@@ -51,10 +51,11 @@ public class Chrome_tts_gwtwrap implements EntryPoint {
 	
 	public void onModuleLoad() {
 		if(!ChromeTts.isAvaialbe()){
-			Window.alert("not supported");
 			HTMLPanel panel=new HTMLPanel("TTS not supported,access this page as extension.\nload manifest.json from extension setting page");
+			RootPanel.get().add(panel);
 			return;
 		}
+		
 		final VerticalPanel root=new VerticalPanel();
 		final CanvasSlider slider=new CanvasSlider(1,50,10,200);
 		

@@ -1,0 +1,19 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		
+	</ui:style>
+	<g:HTMLPanel>
+<g:TextBox width="400px" ui:field="input"/>
+<g:HorizontalPanel ui:field="controls"/>
+<g:HorizontalPanel>
+	<g:Button ui:field="speak">speak</g:Button>
+	<g:Button ui:field="stop">stop</g:Button>
+	<g:Button ui:field="speaking">speaking?</g:Button>
+	<g:Button ui:field="voice_list">voice-list</g:Button>
+</g:HorizontalPanel>
+<g:Label ui:field="logbox"/>
+<g:VerticalPanel ui:field="log"/>
+</g:HTMLPanel>
+</ui:UiBinder> 
