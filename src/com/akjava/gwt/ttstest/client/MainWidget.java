@@ -33,14 +33,33 @@ public class MainWidget extends Composite {
 
 	interface MainWidgetUiBinder extends UiBinder<Widget, MainWidget> {
 	}
+	private CanvasSlider pitchSlider;
+	private CanvasSlider volumeSlider;
 
 	public MainWidget() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
-		slider = new CanvasSlider(1,50,10,200);
 		controls.setVerticalAlignment(HorizontalPanel.ALIGN_MIDDLE);
+		
+		rateSlider = new CanvasSlider(1,50,10,200);
+		rateSlider.setFloatingPoint(true);
+		rateSlider.update();
 		controls.add(new Label("Rate:"));
-		controls.add(slider);
+		controls.add(rateSlider);
+		
+		pitchSlider = new CanvasSlider(0,20,10,200);
+		pitchSlider.setFloatingPoint(true);
+		pitchSlider.update();
+		
+		controls.add(new Label("Pitch:"));
+		controls.add(pitchSlider);
+		
+		volumeSlider = new CanvasSlider(0,10,5,200);
+		volumeSlider.setFloatingPoint(true);
+		volumeSlider.update();
+		
+		controls.add(new Label("Volume:"));
+		controls.add(volumeSlider);
 		
 		
 		
@@ -56,9 +75,10 @@ public class MainWidget extends Composite {
 @UiField Label logbox;
 @UiField VerticalPanel log;
 private EventLogger logger;
-private CanvasSlider slider;
+private CanvasSlider rateSlider;
 
 	
+
 public TextBox getInput(){
 return input;
 }
@@ -95,7 +115,9 @@ return log;
 	
 @UiHandler("speak")
 void clickSpeak(ClickEvent e) {
-	double rate=(double)slider.getValue()/10;
+	double rate=(double)rateSlider.getValue()/10;
+	double pitch=(double)pitchSlider.getValue()/10;
+	double volume=(double)volumeSlider.getValue()/10;
 	
 	SpeakHandler callback=new SpeakHandler() {
 
@@ -106,7 +128,9 @@ void clickSpeak(ClickEvent e) {
 		
 	
 	};
-	ChromeTts.speak(input.getText(), ChromeTts.options().rate(rate).onEvent(new TtsEventHandler() {
+	ChromeTts.speak(input.getText(), ChromeTts.options()
+			.rate(rate).volume(volume).pitch(pitch)
+			.onEvent(new TtsEventHandler() {
 		
 		@Override
 		public void event(TtsEvent event) {

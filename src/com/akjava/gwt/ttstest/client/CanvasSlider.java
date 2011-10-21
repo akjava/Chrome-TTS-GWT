@@ -40,6 +40,13 @@ public class CanvasSlider extends VerticalPanel{
 	CssColor frameColor=CssColor.make("#333");
 	CssColor valueColor=CssColor.make("#ccc");
 	CssColor labelColor=CssColor.make("#000");
+	private boolean floatingPoint;
+	public boolean isFloatingPoint() {
+		return floatingPoint;
+	}
+	public void setFloatingPoint(boolean floatingPoint) {
+		this.floatingPoint = floatingPoint;
+	}
 	public CanvasSlider(int min,int max,int current,int widthPx){
 		this.min=min;
 		this.max=max;
@@ -97,6 +104,9 @@ public class CanvasSlider extends VerticalPanel{
 		}
 	}
 	public String toLabel(){
+		if(floatingPoint){
+			return ""+(double)current/10;
+		}
 		return ""+current;
 	}
 	public void setMouseValue(int x){

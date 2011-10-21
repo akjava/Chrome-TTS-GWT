@@ -29,6 +29,11 @@ public final native TtsOption rate(double rate)/*-{
 this["rate"]=rate;
 return this;
 }-*/;
+public final native TtsOption volume(double volume)/*-{
+this["volume"]=volume;
+return this;
+}-*/;
+
 
 public final native TtsOption pitch(double pitch)/*-{
 this["pitch"]=pitch;
