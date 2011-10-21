@@ -19,7 +19,7 @@ import com.google.gwt.core.client.JsArray;
 
 public class ChromeTts {
 
-	public static native boolean isAvaialbe()/*-{
+	public  final  static native boolean isAvaialbe()/*-{
 
 	if($wnd.chrome){
 		 if($wnd.chrome.tts){
@@ -29,11 +29,11 @@ public class ChromeTts {
 	return false;
 	}-*/;
 	
-	public static native void speak(String text)/*-{
+	public  final  static native void speak(String text)/*-{
 	$wnd.chrome.tts.speak(text);
 	}-*/;
 	
-	public static native void isSpeaking(IsSpeakingeHandler handler)/*-{
+	public  final  static native void isSpeaking(IsSpeakingeHandler handler)/*-{
 		var callback;
 	if(handler!=null){
 		callback=function (speaking) {
@@ -43,12 +43,12 @@ public class ChromeTts {
 	 $wnd.chrome.tts.isSpeaking(callback);
 	}-*/;
 	
-	public static native void stop()/*-{
+	public  final  static native void stop()/*-{
 	 $wnd.chrome.tts.stop();
 	}-*/;
 	
 	
-	public static native void speak(String text,TtsOption options,SpeakHandler handler)/*-{
+	public  final  static native void speak(String text,TtsOption options,SpeakHandler handler)/*-{
 	var callback;
 	if(handler!=null){
 		callback=function () {
@@ -58,7 +58,7 @@ public class ChromeTts {
 	 $wnd.chrome.tts.speak(text,options,callback);
 	}-*/;
 	
-	public static TtsOption options(){
+	public  final  static TtsOption options(){
 		return TtsOption.create();
 	}
 	

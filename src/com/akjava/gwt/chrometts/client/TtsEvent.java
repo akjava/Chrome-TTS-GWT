@@ -20,15 +20,15 @@ import com.google.gwt.core.client.JavaScriptObject;
 public class TtsEvent extends JavaScriptObject{
 protected TtsEvent(){}
 
-public  native String getType()/*-{
+public   final  native String getType()/*-{
 return this["type"];
 }-*/;
 
-public  native int getCharIndex()/*-{
+public  final native int getCharIndex()/*-{
 return this["charIndex"];
 }-*/;
 
-public  native String getErrorMessage()/*-{
+public  final   native String getErrorMessage()/*-{
 return this["errorMessage"];
 }-*/;
 

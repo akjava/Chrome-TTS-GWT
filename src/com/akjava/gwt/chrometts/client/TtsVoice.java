@@ -20,23 +20,23 @@ import com.google.gwt.core.client.JsArrayString;
 
 public class TtsVoice extends JavaScriptObject{
 protected TtsVoice(){}
-	public  native String getVoiceName()/*-{
+	public   final  native String getVoiceName()/*-{
 	return this["voiceName"];
 	}-*/;
 	
-	public  native String getLang()/*-{
+	public   final  native String getLang()/*-{
 	return this["lang"];
 	}-*/;
 	
-	public  native String getGender()/*-{
+	public   final  native String getGender()/*-{
 	return this["gender"];
 	}-*/;
 	
-	public  native String getExtensionId()/*-{
+	public   final  native String getExtensionId()/*-{
 	return this["extensionId"];
 	}-*/;
 	
-	public  native JsArrayString getEventTypes ()/*-{
+	public   final  native JsArrayString getEventTypes ()/*-{
 	return this["eventTypes"];
 	}-*/;
 }
