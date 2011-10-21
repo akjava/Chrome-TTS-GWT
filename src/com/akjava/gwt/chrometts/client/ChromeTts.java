@@ -66,7 +66,6 @@ public class ChromeTts {
 	public static final native void getVoices(GetVoiceHandler handler)/*-{
 	var fc=function ( voices ) {
 		handler.@com.akjava.gwt.chrometts.client.ChromeTts$GetVoiceHandler::voices(*)(voices);
-		//handler.@com.akjava.gwt.chrometts.client.ChromeTts$GetVoiceHandler::event(Lcom/akjava/gwt/chrometts/client/TtsEvent;)(event);
 		}
 		$wnd.chrome.tts.getVoices(fc);
 	}-*/;
