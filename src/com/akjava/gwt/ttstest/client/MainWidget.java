@@ -17,6 +17,7 @@ import com.google.gwt.text.shared.Renderer;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -64,10 +65,50 @@ public class MainWidget extends Composite {
 		
 		
 		
-		input.setText("hello world.\nare you Ready?");
+		input.setText("hello world. \nare you Ready?");
+		
+		
+		
+		
+		voiceListBox = new ValueListBox<String>(new Renderer<String>() {
+
+			@Override
+			public String render(String object) {
+				return object;
+			}
+
+			@Override
+			public void render(String object, Appendable appendable)
+					throws IOException {
+				
+			}
+		});
+		ChromeTts.getVoices(new GetVoiceHandler() {
+			
+			@Override
+			public void voices(JsArray<TtsVoice> voices) {
+				GWT.log("voice:");
+				ArrayList<String> array=new ArrayList<String>();
+				for(int i=0;i<voices.length();i++){
+					TtsVoice voice=voices.get(i);
+					array.add(voice.getVoiceName());
+				}
+				if(array.size()>0){
+					voiceListBox.setValue(array.get(0));
+					voiceListBox.setAcceptableValues(array);
+				}else{
+					Window.alert("your pc has no TextToSpeech Engine.you have to install TextToSpeech Engine from Chrome WebStore\n");
+				}
+
+			}
+		});
+		
+		log.add(voiceListBox);
 		
 		logger = new EventLogger(30);
 		log.add(logger);
+		
+		
 	}
 @UiField TextBox input;
 @UiField HorizontalPanel controls;
@@ -76,6 +117,7 @@ public class MainWidget extends Composite {
 @UiField VerticalPanel log;
 private EventLogger logger;
 private CanvasSlider rateSlider;
+private ValueListBox<String> voiceListBox;
 
 	
 
@@ -115,6 +157,7 @@ return log;
 	
 @UiHandler("speak")
 void clickSpeak(ClickEvent e) {
+	String voice=voiceListBox.getValue();
 	double rate=(double)rateSlider.getValue()/10;
 	double pitch=(double)pitchSlider.getValue()/10;
 	double volume=(double)volumeSlider.getValue()/10;
@@ -130,6 +173,7 @@ void clickSpeak(ClickEvent e) {
 	};
 	ChromeTts.speak(input.getText(), ChromeTts.options()
 			.rate(rate).volume(volume).pitch(pitch)
+			.voiceName(voice)
 			.onEvent(new TtsEventHandler() {
 		
 		@Override
@@ -163,7 +207,7 @@ void clickVoice_list(ClickEvent e) {
 		@Override
 		public void voices(JsArray<TtsVoice> voices) {
 			GWT.log("voice:");
-			ArrayList<TtsVoice> array=new ArrayList<TtsVoice>();
+			//ArrayList<TtsVoice> array=new ArrayList<TtsVoice>();
 			for(int i=0;i<voices.length();i++){
 				TtsVoice voice=voices.get(i);
 				String label=voice.getVoiceName()+","+voice.getExtensionId()+","+voice.getGender()+","+voice.getLang()+",type:"+voice.getEventTypes();

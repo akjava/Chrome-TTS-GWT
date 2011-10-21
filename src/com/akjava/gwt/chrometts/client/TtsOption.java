@@ -33,6 +33,10 @@ public final native TtsOption volume(double volume)/*-{
 this["volume"]=volume;
 return this;
 }-*/;
+public final native TtsOption voiceName(String voiceName)/*-{
+this["voiceName"]=voiceName;
+return this;
+}-*/;
 
 
 public final native TtsOption pitch(double pitch)/*-{

@@ -17,31 +17,10 @@ package com.akjava.gwt.ttstest.client;
 
 
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 import com.akjava.gwt.chrometts.client.ChromeTts;
-import com.akjava.gwt.chrometts.client.TtsEvent;
-import com.akjava.gwt.chrometts.client.TtsVoice;
-import com.akjava.gwt.chrometts.client.ChromeTts.GetVoiceHandler;
-import com.akjava.gwt.chrometts.client.ChromeTts.IsSpeakingeHandler;
-import com.akjava.gwt.chrometts.client.ChromeTts.SpeakHandler;
-import com.akjava.gwt.chrometts.client.ChromeTts.TtsEventHandler;
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.JsArray;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.text.shared.Renderer;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.ValueListBox;
-import com.google.gwt.user.client.ui.VerticalPanel;
 
 
 /**
