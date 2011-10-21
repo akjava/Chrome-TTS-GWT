@@ -88,17 +88,7 @@ public class MainWidget extends Composite {
 			@Override
 			public void voices(JsArray<TtsVoice> voices) {
 				GWT.log("voice:");
-				ArrayList<String> array=new ArrayList<String>();
-				for(int i=0;i<voices.length();i++){
-					TtsVoice voice=voices.get(i);
-					array.add(voice.getVoiceName());
-				}
-				if(array.size()>0){
-					voiceListBox.setValue(array.get(0));
-					voiceListBox.setAcceptableValues(array);
-				}else{
-					Window.alert("your pc has no TextToSpeech Engine.you have to install TextToSpeech Engine from Chrome WebStore\n");
-				}
+				updateVoices(voices);
 
 			}
 		});
@@ -120,6 +110,19 @@ private CanvasSlider rateSlider;
 private ValueListBox<String> voiceListBox;
 
 	
+private void updateVoices(JsArray<TtsVoice> voices){
+	ArrayList<String> array=new ArrayList<String>();
+	for(int i=0;i<voices.length();i++){
+		TtsVoice voice=voices.get(i);
+		array.add(voice.getVoiceName());
+	}
+	if(array.size()>0){
+		voiceListBox.setValue(array.get(0));
+		voiceListBox.setAcceptableValues(array);
+	}else{
+		Window.alert("your pc has no TextToSpeech Engine.you have to install TextToSpeech Engine from Chrome WebStore\n");
+	}
+}
 
 public TextBox getInput(){
 return input;
@@ -213,6 +216,7 @@ void clickVoice_list(ClickEvent e) {
 				String label=voice.getVoiceName()+","+voice.getExtensionId()+","+voice.getGender()+","+voice.getLang()+",type:"+voice.getEventTypes();
 				logger.add(label);
 			}
+			updateVoices(voices);
 
 		}
 	});
