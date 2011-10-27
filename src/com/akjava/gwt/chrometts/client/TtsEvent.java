@@ -18,6 +18,10 @@ package com.akjava.gwt.chrometts.client;
 import com.google.gwt.core.client.JavaScriptObject;
 
 public class TtsEvent extends JavaScriptObject{
+public static final String TYPE_END="end";
+public static final String TYPE_INTERRUPTED="interrupted";
+public static final String TYPE_CANCELLED="cancelled";
+public static final String TYPE_ERROR="error";
 protected TtsEvent(){}
 
 public   final  native String getType()/*-{

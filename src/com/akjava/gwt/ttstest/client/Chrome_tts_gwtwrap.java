@@ -29,11 +29,13 @@ import com.google.gwt.user.client.ui.RootPanel;
 public class Chrome_tts_gwtwrap implements EntryPoint {
 	
 	public void onModuleLoad() {
+		
 		if(!ChromeTts.isAvaialbe()){
 			HTMLPanel panel=new HTMLPanel("TTS not supported,access this page as extension.\nload manifest.json from extension setting page");
 			RootPanel.get().add(panel);
 			return;
 		}
+		
 		
 		MainWidget main=new MainWidget();
 		RootPanel.get().add(main);
